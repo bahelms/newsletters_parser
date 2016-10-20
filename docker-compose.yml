@@ -1,0 +1,7 @@
+version: "2"
+services:
+  parser:
+    build: .
+    volumes:
+      - .:/usr/src/app
+    command: python parser.py
