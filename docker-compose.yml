@@ -2,6 +2,8 @@ version: "2"
 services:
   parser:
     build: .
+    environment:
+      PYTHONPATH: /usr/src/app
     volumes:
       - .:/usr/src/app
-    command: python parser.py
+    command: python main.py

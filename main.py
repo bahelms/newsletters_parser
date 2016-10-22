@@ -1,6 +1,8 @@
 import logging
 
-logging.info("Parser started.")
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(__name__)
+logger.info("Parser started.")
 
 # get list of emails
 # for email in emails
