@@ -1,37 +1,10 @@
-import httplib2
-from apiclient import discovery
 from parser.gmail_message import GmailMessage
-from parser.gmail_auth import GmailAuth
 
-class GmailClient(object):
-    """Interface to Gmail API"""
+class TestStrategy(object):
+    """An email client strategy to mock real email services"""
 
-    def __init__(self):
-        self.service = self.setup_service(GmailAuth())
-
-    def setup_service(self, auth):
-        http = auth.authorize_connection(httplib2.Http())
-        return discovery.build("gmail", "v1", http=http)
-
-    def message_ids(self):
-        """Returns a list of ids for all messages in inbox"""
-        # self.service
-        return self.message_ids_stub()
-
-    def messages(self):
-        """List full data for all messages in inbox"""
-        return [self.retrieve_message(id) for id in self.message_ids()]
-
-    def retrieve_message(self, id):
-        """Request Gmail API message and return GmailMessage object"""
-        # make request
-        return GmailMessage(self.message_stub())
-
-
-    """Temporary data stubs"""
-
-    def message_ids_stub(self):
-        return ["157e3d65eed7eac1", "157e3532a4f149b0"]
+    def message(self, response):
+        return GmailMessage(response)
 
     def message_stub(self):
         return {

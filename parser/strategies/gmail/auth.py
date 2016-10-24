@@ -6,7 +6,7 @@ READ_ONLY_SCOPE = "https://www.googleapis.com/auth/gmail.readonly"
 CLIENT_SECRET = "client_secret.json"
 APP = "Newsletter Retrieval"
 
-class GmailAuth(object):
+class Auth(object):
     """Setup the proper credentials for Gmail API authorization"""
 
     def authorize_connection(self, http):

@@ -1,9 +1,9 @@
 import unittest
-from parser.gmail_client import GmailClient
+from parser.email_client import EmailClient
 
-class TestGmailClient(unittest.TestCase):
+class TestEmailClient(unittest.TestCase):
     def setUp(self):
-        self.client = GmailClient()
+        self.client = EmailClient(TestStrategy())
 
     def test_retrieving_list_of_all_message_ids(self):
         expected_message_ids = ["157e3d65eed7eac1", "157e3532a4f149b0"]

@@ -1,4 +1,4 @@
-class GmailMessage(object):
+class Message(object):
     """Container for Gmail API message response data."""
 
     def __init__(self, data):
