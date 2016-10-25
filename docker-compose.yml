@@ -4,6 +4,7 @@ services:
     build: .
     environment:
       PYTHONPATH: /usr/src/app
+    env_file: secrets.env
     volumes:
       - .:/usr/src/app
     command: python main.py

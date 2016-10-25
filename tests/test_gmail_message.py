@@ -1,5 +1,5 @@
 import unittest
-from parser.strategies import gmail
+from parser import gmail
 
 class TestGmailMessage(unittest.TestCase):
     def setUp(self):
