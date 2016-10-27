@@ -3,7 +3,6 @@ class Message(object):
 
     def __init__(self, data):
         self.data = data
-        self.content = data["payload"]["parts"]
 
     def body(self):
-        return self.content[0]["body"]["data"]
+        return self.data["raw"].encode("ASCII")

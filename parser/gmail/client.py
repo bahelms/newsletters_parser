@@ -1,5 +1,5 @@
 import httplib2
-from parser.gmail import Auth
+from . import Auth, Message
 from apiclient import discovery
 
 class Client(object):
@@ -7,6 +7,7 @@ class Client(object):
 
     def __init__(self, user_id):
         self.service = self._setup_service()
+        self.messages = self.service.users().messages()
         self.user_id = user_id
 
     def retrieve_messages(self):
@@ -15,12 +16,14 @@ class Client(object):
 
     def message_ids(self):
         """Returns a list of ids for all messages in inbox"""
-        messages = self.service.users().messages()
-        return messages.list(userId=self.user_id).execute()
+        data = self.messages.list(userId=self.user_id).execute()
+        return [ids["id"] for ids in data["messages"]]
 
-    def get_message(self, id):
+    def get_message(self, msg_id):
         """Retrieves a specified gmail message"""
-        return id
+        args = {"userId": self.user_id, "id": msg_id, "format": "raw"}
+        msg = self.messages.get(**args).execute()
+        return Message(msg)
 
     def _setup_service(self):
         http = Auth().credentials().authorize(httplib2.Http())

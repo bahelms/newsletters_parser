@@ -1,5 +1,6 @@
 import logging
 import os
+import base64
 from parser import gmail
 
 logging.basicConfig(level=logging.INFO)
@@ -9,9 +10,13 @@ logger.info("Parser started.")
 user_id = os.environ["GMAIL_USER_ID"]
 
 client = gmail.Client(user_id)
-logger.info(client.message_ids())
+message = client.get_message(client.message_ids()[0])
+content = base64.urlsafe_b64decode(message.body())
+logger.info(content)
+
 # for message in client.retrieve_messages():
-#     logger.info(message.body())
+#     content = base64.b64decode(message.body())
+#     logger.info(content)
     # decode
     # parse articles
     # save articles
