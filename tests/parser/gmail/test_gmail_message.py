@@ -1,20 +1,23 @@
 import unittest
+import base64
 from parser import gmail
 
 class TestGmailMessage(unittest.TestCase):
     def setUp(self):
         self.message = gmail.Message(self.data())
 
-    def test_body(self):
-        self.assertEqual(self.message.body(), "Hey there, bo")
+    def test_html(self):
+        self.assertEqual(self.message.html(), "<div>Hey there</div>")
 
     def data(self):
         return {
             "payload": {
                 "parts": [{
-                    "body": {"data": "Hey there, bo"}
+                    "mimeType": "text/html",
+                    "body": {"data": base64.b64encode(b"<div>Hey there</div>")},
                 }, {
-                    "body": {"data": "Guess who's coming to dinner?"}
+                    "mimeType": "text/plain",
+                    "body": {"data": "not html"}
                 }]
             }
         }

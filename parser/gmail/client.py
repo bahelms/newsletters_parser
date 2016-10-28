@@ -1,4 +1,5 @@
 import httplib2
+import logging
 from . import Auth, Message
 from apiclient import discovery
 
@@ -21,7 +22,7 @@ class Client(object):
 
     def get_message(self, msg_id):
         """Retrieves a specified gmail message"""
-        args = {"userId": self.user_id, "id": msg_id, "format": "raw"}
+        args = {"userId": self.user_id, "id": msg_id, "format": "full"}
         msg = self.messages.get(**args).execute()
         return Message(msg)
 
