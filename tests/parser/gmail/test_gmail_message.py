@@ -9,9 +9,20 @@ class TestGmailMessage(unittest.TestCase):
     def test_html(self):
         self.assertEqual(self.message.html(), "<div>Hey there</div>")
 
+    def test_newsletter_name(self):
+        self.assertEqual(self.message.newsletter_name(), "Scala Times")
+
+    def test_newsletter_source(self):
+        expected_source = "<scalatimes@softwaremill.com>"
+        self.assertEqual(self.message.newsletter_source(), expected_source)
+
     def data(self):
         return {
             "payload": {
+                "headers": [{
+                    "name": "From",
+                    "value": "Scala Times <scalatimes@softwaremill.com>"
+                }],
                 "parts": [{
                     "mimeType": "text/html",
                     "body": {"data": base64.b64encode(b"<div>Hey there</div>")},
@@ -23,4 +34,4 @@ class TestGmailMessage(unittest.TestCase):
         }
 
 if __name__ == "__main__":
-    unittest.main()
+    unittest.main(verbosity=2)

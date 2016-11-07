@@ -1,0 +1,15 @@
+newsletters:
+  - identifier: Pycoders Weekly <admin@pycoders.com>
+  - href_domain: pycoders
+  - start_anchor: News
+
+
+  # - JavaScript Weekly <jsw@peterc.org>
+  # - O'Reilly Programming Newsletter <oreilly@post.oreilly.com>
+  # - Web Operations Weekly <peter@webopsweekly.com>
+  # - Elixir Radar <elixir.radar@plataformatec.com.br>
+  # - Scala Times <scalatimes@softwaremill.com>
+  # - SE Daily <erika@softwareengineeringdaily.com>
+  # - Ruby Weekly <rw@peterc.org>
+  # - Python Weekly <rahul@pythonweekly.com>
+  # - Barrett Helms <barrett.helms@technekes.com>
