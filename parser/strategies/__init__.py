@@ -1,1 +1,2 @@
-from parser.strategies import ParsingStrategy
+from parser.strategies.parsing_strategy import ParsingStrategy
+from parser.strategies.pycoders_weekly import PycodersWeekly

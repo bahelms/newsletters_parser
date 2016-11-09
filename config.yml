@@ -1,7 +1,6 @@
 newsletters:
-  - identifier: Pycoders Weekly <admin@pycoders.com>
-  - href_domain: pycoders
-  - start_anchor: News
+  - identifier: Pycoders Weekly
+    source: <admin@pycoders.com>
 
 
   # - JavaScript Weekly <jsw@peterc.org>

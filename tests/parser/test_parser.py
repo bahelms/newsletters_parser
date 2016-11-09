@@ -1,10 +1,11 @@
 import unittest
 from parser import Parser
+from parser.strategies import PycodersWeekly
 
 class TestParser(unittest.TestCase):
     def setUp(self):
         with open("tests/support/pycoder_weekly_newsletter.html") as f:
-            self.parser = Parser(f.read())
+            self.parser = Parser(f.read(), PycodersWeekly)
 
     def test_correct_number_of_articles_is_parsed(self):
         self.assertEqual(len(self.parser.articles()), 24)
