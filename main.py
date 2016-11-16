@@ -1,5 +1,6 @@
 import logging
 import os
+import sys
 from parser import gmail, Parser
 from parser.strategies import PycodersWeekly
 
@@ -13,9 +14,13 @@ msg_ids = client.message_ids()
 
 for id in msg_ids:
     message = client.get_message(id)
-    if message.newsletter_name() == "Pycoders Weekly":
-        parser = Parser(message.html(), PycodersWeekly)
-        logger.info(parser.articles())
+    strategy_name = message.newsletter_name().replace(" ", "")
 
-# save articles
-# archive email
+    if strategy_name in dir():
+        strategy = getattr(sys.modules[__name__], strategy_name)
+        parser = Parser(message.html(), strategy)
+        logger.info(parser.articles())
+        # save articles
+        # archive email
+    else:
+        logger.info("No strategy found for {}.".format(strategy_name))
