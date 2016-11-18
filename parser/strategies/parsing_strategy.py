@@ -19,6 +19,6 @@ class ParsingStrategy(object):
         """Returns dictionary of article data
 
         :article: bs4.element.Tag
-        :returns: Dict
+        :returns: {"url": str, "title": str, "snippet": str}
         """
         raise NotImplementedError("article_format")

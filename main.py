@@ -3,6 +3,7 @@ import os
 import sys
 from parser import gmail, Parser
 from parser.strategies import PycodersWeekly
+from parser.pending_article import PendingArticle
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
@@ -18,9 +19,10 @@ for id in msg_ids:
 
     if strategy_name in dir():
         strategy = getattr(sys.modules[__name__], strategy_name)
-        parser = Parser(message.html(), strategy)
-        logger.info(parser.articles())
-        # save articles
+        for article in Parser(message.html(), strategy).articles():
+            pending_article = PendingArticle(**article)
+            logger.info(pending_article.title)
+            # save articles
         # archive email
     else:
         logger.info("No strategy found for {}.".format(strategy_name))

@@ -7,4 +7,11 @@ services:
     env_file: secrets.env
     volumes:
       - .:/usr/src/app
+    depends_on:
+      - db
     command: python main.py
+
+  db:
+    image: postgres:9.6.1
+    ports:
+      - "5432:5432"
