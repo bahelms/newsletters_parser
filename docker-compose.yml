@@ -9,7 +9,7 @@ services:
       - .:/usr/src/app
     depends_on:
       - db
-    command: bin/start.sh
+    command: python main.py
 
   db:
     image: postgres:9.6.1
