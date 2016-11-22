@@ -4,6 +4,7 @@ services:
     build: .
     environment:
       PYTHONPATH: /usr/src/app
+      PARSER_ENV: dev
     env_file: secrets.env
     volumes:
       - .:/usr/src/app

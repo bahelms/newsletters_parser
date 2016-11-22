@@ -1,8 +1,6 @@
 newsletters:
   - identifier: Pycoders Weekly
     source: <admin@pycoders.com>
-
-
   # - JavaScript Weekly <jsw@peterc.org>
   # - O'Reilly Programming Newsletter <oreilly@post.oreilly.com>
   # - Web Operations Weekly <peter@webopsweekly.com>
@@ -12,3 +10,11 @@ newsletters:
   # - Ruby Weekly <rw@peterc.org>
   # - Python Weekly <rahul@pythonweekly.com>
   # - Barrett Helms <barrett.helms@technekes.com>
+
+database:
+  dev:
+    host: db
+    port: 5432
+    database: parser_dev
+    username: postgres
+    password: postgres
