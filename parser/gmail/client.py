@@ -1,7 +1,8 @@
 import httplib2
-import logging
 from . import Auth, Message
 from apiclient import discovery
+
+ARCHIVED = "Label_1"
 
 class Client(object):
     """Interface to Gmail API"""
@@ -12,12 +13,14 @@ class Client(object):
         self.user_id = user_id
 
     def retrieve_messages(self):
-        """Retrieve data for all messages in inbox"""
-        return [self.get_message(id) for id in self.message_ids()]
+        """Retrieve data for all messages in inbox without the Archived label"""
+        query = "label:inbox"
+        # make this a generator
+        return [self.get_message(id) for id in self.message_ids(query)]
 
-    def message_ids(self):
-        """Returns a list of ids for all messages in inbox"""
-        data = self.messages.list(userId=self.user_id).execute()
+    def message_ids(self, query=""):
+        """Returns a list of ids for messages in inbox scoped to query"""
+        data = self.messages.list(userId=self.user_id, q=query).execute()
         return [ids["id"] for ids in data["messages"]]
 
     def get_message(self, msg_id):
@@ -25,6 +28,12 @@ class Client(object):
         args = {"userId": self.user_id, "id": msg_id, "format": "full"}
         msg = self.messages.get(**args).execute()
         return Message(msg)
+
+    def archive(self, msg_id):
+        """Removes Inbox label and adds Archived label"""
+        body = {"removeLabelIds": ["INBOX"], "addLabelIds": [ARCHIVED]}
+        self.messages.\
+            modify(userId=self.user_id, id=msg_id, body=body).execute()
 
     def _setup_service(self):
         http = Auth().credentials().authorize(httplib2.Http())

@@ -18,6 +18,7 @@ class TestGmailMessage(unittest.TestCase):
 
     def data(self):
         return {
+            "id": "123456",
             "payload": {
                 "headers": [{
                     "name": "From",

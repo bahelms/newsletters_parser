@@ -2,7 +2,7 @@ import os
 from oauth2client import client, tools
 from oauth2client.file import Storage
 
-READ_ONLY_SCOPE = "https://www.googleapis.com/auth/gmail.readonly"
+SCOPES = ["https://www.googleapis.com/auth/gmail.modify"]
 CLIENT_SECRET = "client_secret.json"
 APP = "Newsletter Retrieval"
 
@@ -26,9 +26,7 @@ class Auth(object):
         credentials = store.get()
 
         if not credentials or credentials.invalid:
-            flow = client.flow_from_clientsecrets(
-                CLIENT_SECRET,
-                READ_ONLY_SCOPE)
+            flow = client.flow_from_clientsecrets(CLIENT_SECRET, SCOPES)
             flow.user_agent = APP
             args = tools.argparser.parse_args()
             args.noauth_local_webserver = True

@@ -7,7 +7,11 @@ class PendingArticle(Base):
     """Persisted article awaiting user approval"""
     __tablename__ = "pending_articles"
 
-    id = Column(Integer, Sequence("pending_article_id_seq"), primary_key=True)
-    url = Column(Text)
+    url = Column(Text, primary_key=True)
     title = Column(Text)
     snippet = Column(Text)
+
+    def __repr__(self):
+        return """
+        PendingArticle -- url: {url}, title: {title}, snippet: {snippet}
+        """.format(**self.__dict__)

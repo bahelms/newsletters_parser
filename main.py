@@ -12,19 +12,17 @@ logger.info("Parser started.")
 
 user_id = os.environ["GMAIL_USER_ID"]
 client = gmail.Client(user_id)
-msg_ids = client.message_ids()
 db = Database(os.environ["PARSER_ENV"])
 
 db.initialize()
 
-for id in msg_ids:
-    message = client.get_message(id)
+for message in client.retrieve_messages():
     strategy_name = message.newsletter_name().replace(" ", "")
 
     if strategy_name in dir():
         strategy = getattr(sys.modules[__name__], strategy_name)
         for article in Parser(message.html(), strategy).articles():
-            db.persist_model(PendingArticle(**article))
-        # archive email
+            db.persist(PendingArticle(**article))
+        client.archive(message.id)
     else:
-        logger.info("No strategy found for {}.".format(strategy_name))
+        logger.info("No strategy found for {}".format(strategy_name))

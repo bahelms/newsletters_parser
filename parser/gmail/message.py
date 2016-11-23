@@ -6,6 +6,7 @@ class Message(object):
 
     def __init__(self, data):
         self.data = data
+        self.id = data["id"]
         self.headers = data["payload"]["headers"]
         self.source_pattern = re.compile("(.+)\s(<.+>)")
 

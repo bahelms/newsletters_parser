@@ -26,17 +26,16 @@ class Database(object):
             # Check if DB exists
             conn = self.engine.connect()
             logger.info("DB already exists.")
+            conn.close()
         except Exception as e:
             logger.info("DB not found. Creating...")
             self._create_app_database()
-        else:
-            conn.close()
         logger.info("Creating tables...")
         self._create_tables()
 
-    def persist_model(self, model):
+    def persist(self, model):
         session = self.Session()
-        session.add(model)
+        session.merge(model)
         session.commit()
 
     def _create_tables(self):
@@ -55,3 +54,4 @@ class Database(object):
         pg_conn.execute("commit")
         pg_conn.execute("create database {0}".format(app_db))
         pg_conn.close()
+
