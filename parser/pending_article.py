@@ -3,6 +3,7 @@ from sqlalchemy.ext.declarative import declarative_base
 
 Base = declarative_base()
 
+
 class PendingArticle(Base):
     """Persisted article awaiting user approval"""
     __tablename__ = "pending_articles"

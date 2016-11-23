@@ -1,4 +1,5 @@
-from parser.strategies import ParsingStrategy
+from parser.strategies.parsing_strategy import ParsingStrategy
+
 
 class PycodersWeekly(ParsingStrategy):
     """HTML parsing strategy for Pycoders Weekly Newsletter"""

@@ -4,7 +4,7 @@ import sys
 from parser import gmail, Parser
 from parser.database import Database
 from parser.pending_article import PendingArticle
-from parser.strategies import PycodersWeekly
+from parser.strategies import *
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)

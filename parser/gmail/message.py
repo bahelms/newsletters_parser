@@ -1,6 +1,7 @@
 import base64
 import re
 
+
 class Message(object):
     """Container for Gmail API message response data."""
 
@@ -37,8 +38,9 @@ class Message(object):
 
         :returns: Base64 encoded bytes
         """
-        html_type = lambda part: part["mimeType"] == "text/html"
-        html_part = list(filter(html_type, self.data["payload"]["parts"]))[0]
+        html_part = list(filter(
+            lambda part: part["mimeType"] == "text/html",
+            self.data["payload"]["parts"]))[0]
         return html_part["body"]["data"]
 
     def _message_source(self):

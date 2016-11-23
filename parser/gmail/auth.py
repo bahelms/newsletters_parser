@@ -1,10 +1,13 @@
 import os
+import logging
 from oauth2client import client, tools
 from oauth2client.file import Storage
 
 SCOPES = ["https://www.googleapis.com/auth/gmail.modify"]
 CLIENT_SECRET = "client_secret.json"
 APP = "Newsletter Retrieval"
+logger = logging.getLogger(__name__)
+
 
 class Auth(object):
     """Setup the proper credentials for Gmail API authorization"""

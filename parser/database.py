@@ -6,6 +6,7 @@ from sqlalchemy.orm import sessionmaker
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
+
 class Database(object):
     """Operations interface to database"""
 
@@ -54,4 +55,3 @@ class Database(object):
         pg_conn.execute("commit")
         pg_conn.execute("create database {0}".format(app_db))
         pg_conn.close()
-

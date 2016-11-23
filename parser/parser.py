@@ -1,9 +1,9 @@
 import logging
-import re
 from bs4 import BeautifulSoup
-from parser.strategies import ParsingStrategy
+from parser.strategies.parsing_strategy import ParsingStrategy
 
 logger = logging.getLogger(__name__)
+
 
 class Parser(object):
     """Extracts data for articles from HTML strings"""

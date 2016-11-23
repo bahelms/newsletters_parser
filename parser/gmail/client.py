@@ -4,6 +4,7 @@ from apiclient import discovery
 
 ARCHIVED = "Label_1"
 
+
 class Client(object):
     """Interface to Gmail API"""
 
@@ -13,10 +14,10 @@ class Client(object):
         self.user_id = user_id
 
     def retrieve_messages(self):
-        """Retrieve data for all messages in inbox without the Archived label"""
+        """Retrieve data for all active messages in inbox"""
         query = "label:inbox"
-        # make this a generator
-        return [self.get_message(id) for id in self.message_ids(query)]
+        for id in self.message_ids(query):
+            yield self.get_message(id)
 
     def message_ids(self, query=""):
         """Returns a list of ids for messages in inbox scoped to query"""

@@ -2,6 +2,7 @@ import unittest
 from parser import Parser
 from parser.strategies import PycodersWeekly
 
+
 class TestParser(unittest.TestCase):
     def setUp(self):
         with open("tests/support/pycoder_weekly_newsletter.html") as f:
@@ -26,6 +27,7 @@ class TestParser(unittest.TestCase):
     def test_article_title_is_parsed(self):
         expected_title = "PyData DC 2016 Videos"
         self.assertEqual(self.parser.articles()[1]["title"], expected_title)
+
 
 if __name__ == "__main__":
     unittest.main(verbosity=2)

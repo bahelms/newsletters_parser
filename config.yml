@@ -1,15 +1,24 @@
 newsletters:
   - identifier: Pycoders Weekly
     source: <admin@pycoders.com>
-  # - JavaScript Weekly <jsw@peterc.org>
-  # - O'Reilly Programming Newsletter <oreilly@post.oreilly.com>
-  # - Web Operations Weekly <peter@webopsweekly.com>
-  # - Elixir Radar <elixir.radar@plataformatec.com.br>
-  # - Scala Times <scalatimes@softwaremill.com>
-  # - SE Daily <erika@softwareengineeringdaily.com>
-  # - Ruby Weekly <rw@peterc.org>
-  # - Python Weekly <rahul@pythonweekly.com>
-  # - Barrett Helms <barrett.helms@technekes.com>
+  - identifier: SE Daily
+    source: <erika@softwareengineeringdaily.com>
+  - identifier: JavaScript Weekly
+    source: <jsw@peterc.org>
+  - identifier: O'Reilly Programming Newsletter
+    source: <oreilly@post.oreilly.com>
+  - identifier: Web Operations Weekly
+    source: <peter@webopsweekly.com>
+  - identifier: Elixir Radar
+    source: <elixir.radar@plataformatec.com.br>
+  - identifier: Scala Times
+    source: <scalatimes@softwaremill.com>
+  - identifier: Ruby Weekly
+    source: <rw@peterc.org>
+  - identifier: Python Weekly
+    source: <rahul@pythonweekly.com>
+  - identifier: Barrett Helms
+    source: <barrett.helms@technekes.com>
 
 database:
   dev:
